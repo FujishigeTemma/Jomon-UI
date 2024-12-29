@@ -3,8 +3,8 @@ import type { DateTime } from 'luxon'
 import type { Group } from '/@/features/group/model'
 import type { RequestComment } from '/@/features/requestComment/model'
 import type {
-  RequestStatusDetail,
-  RequestStatus
+  RequestStatus,
+  RequestStatusDetail
 } from '/@/features/requestStatus/model'
 import type {
   RequestTarget,
@@ -30,6 +30,8 @@ export interface RequestQuerySeed {
   target: string
   since: string
   until: string
+  limit: number
+  offset: number
   tags: string[]
   group: string
 }

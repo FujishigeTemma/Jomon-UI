@@ -9,6 +9,8 @@ const defaultParams: RequestQuerySeed = {
   target: '',
   since: '',
   until: '',
+  limit: 10,
+  offset: 0,
   tags: [],
   group: ''
 }
