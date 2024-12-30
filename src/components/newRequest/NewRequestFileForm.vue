@@ -12,7 +12,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<(e: 'input', value: FileSeed[]) => void>()
+const emit = defineEmits<{ (e: 'input', value: FileSeed[]): void }>()
 
 const inputRef = ref()
 
@@ -20,7 +20,7 @@ function handleFileChange(e: Event) {
   if (!(e.target instanceof HTMLInputElement) || !e.target.files) {
     return
   }
-  for (const file of Array.from(e.target.files)) {
+  Array.from(e.target.files).forEach(file => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = () => {
@@ -29,7 +29,7 @@ function handleFileChange(e: Event) {
         { name: file.name, src: reader.result as string, type: file.type }
       ])
     }
-  }
+  })
   if (inputRef.value) {
     inputRef.value.value = null
   }

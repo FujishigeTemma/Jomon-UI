@@ -57,7 +57,7 @@ const handleUpdateGroup = async () => {
 <template>
   <div class="flex flex-col gap-1">
     <div class="flex items-center justify-between">
-      <h2 class="text-sm font-bold">グループ</h2>
+      <div class="text-sm font-bold">グループ</div>
       <EditButton
         v-if="hasAuthority"
         :is-edit-mode="isEditMode"

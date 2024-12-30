@@ -45,7 +45,7 @@ if (!isUserFetched.value) {
   </div>
   <form class="flex flex-col gap-6">
     <div class="flex flex-col gap-2">
-      <h2 class="text-sm font-medium">申請者</h2>
+      <label class="text-sm font-medium">申請者</label>
       <span>{{ me?.name }}</span>
     </div>
     <div class="flex flex-col gap-2">

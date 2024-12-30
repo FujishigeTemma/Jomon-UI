@@ -67,7 +67,7 @@ watch(
 
     <PaginationBar
       v-if="transactions && transactions.length > 0"
-      class="mt-7"
+          class="my-4"
       :current-page="page"
       path="/transactions"
       :total-pages="Math.ceil(transactions.length / 10)" />

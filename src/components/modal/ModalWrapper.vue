@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const emit = defineEmits<(e: 'closeModal') => void>()
+const emit = defineEmits<{
+  (e: 'closeModal'): void
+}>()
 </script>
 
 <template>

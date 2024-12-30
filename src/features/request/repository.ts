@@ -8,8 +8,8 @@ import { convertRequestCommentFromData } from '/@/features/requestComment/conver
 import type { RequestComment } from '/@/features/requestComment/model'
 import { convertRequestStatusFromData } from '/@/features/requestStatus/converter'
 import type {
-  RequestStatus,
-  RequestStatusDetail
+  RequestStatusDetail,
+  RequestStatus
 } from '/@/features/requestStatus/model'
 
 import type {
@@ -31,8 +31,6 @@ const createRequestRepository = () => ({
       querySeed.target,
       querySeed.since,
       querySeed.until,
-      querySeed.limit,
-      querySeed.offset,
       querySeed.tags.join(','),
       querySeed.group
     )

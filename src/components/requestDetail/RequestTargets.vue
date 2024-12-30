@@ -3,15 +3,15 @@ import { storeToRefs } from 'pinia'
 
 import { useUserStore } from '/@/stores/user'
 
-import { ref } from 'vue'
-import { useToast } from 'vue-toastification'
-import RequestTarget from '/@/components/requestDetail/RequestTarget.vue'
 import EditButton from '/@/components/shared/EditButton.vue'
-import SimpleButton from '/@/components/shared/SimpleButton.vue'
-import { useRequest } from '/@/features/request/composables'
-import type { RequestDetail } from '/@/features/request/model'
-import { editRequestUsecase } from '/@/features/request/usecase'
+import { ref } from 'vue'
+import RequestTarget from '/@/components/requestDetail/RequestTarget.vue'
 import type { RequestTargetDetail } from '/@/features/requestTarget/model'
+import SimpleButton from '/@/components/shared/SimpleButton.vue'
+import { editRequestUsecase } from '/@/features/request/usecase'
+import type { RequestDetail } from '/@/features/request/model'
+import { useRequest } from '/@/features/request/composables'
+import { useToast } from 'vue-toastification'
 
 const props = defineProps<{
   request: RequestDetail
@@ -53,7 +53,7 @@ const handleUpdateTargets = async () => {
 <template>
   <div class="flex flex-col gap-2">
     <div class="flex items-center justify-between">
-      <h2 class="text-sm font-bold">払い戻し対象者</h2>
+      <div class="text-sm font-bold">払い戻し対象者</div>
       <div class="flex items-center gap-2">
         <SimpleButton
           v-if="isEditMode"

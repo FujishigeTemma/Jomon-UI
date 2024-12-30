@@ -6,7 +6,7 @@ interface Props {
   tags: Tag[]
 }
 const props = defineProps<Props>()
-const emit = defineEmits<(e: 'input', value: Tag[]) => void>()
+const emit = defineEmits<{ (e: 'input', value: Tag[]): void }>()
 </script>
 
 <template>

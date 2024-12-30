@@ -11,7 +11,7 @@ const props = defineProps<Props>()
 </script>
 
 <template>
-  <div class="flex gap-4">
+  <div class="space-x-4">
     <label
       v-for="option in props.options"
       :key="option.key"

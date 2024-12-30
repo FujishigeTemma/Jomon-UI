@@ -43,7 +43,7 @@ const formattedDate = computed(() => formatDate(props.transaction.createdAt))
 </script>
 
 <template>
-  <form class="flex flex-col gap-2">
+  <form class="mb-4 space-y-2">
     <div class="flex flex-col">
       <label>紐づける申請</label>
       <div class="flex gap-4">

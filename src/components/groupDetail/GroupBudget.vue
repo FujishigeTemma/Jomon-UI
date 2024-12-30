@@ -9,8 +9,8 @@ const { group } = storeToRefs(groupDetailStore)
 </script>
 
 <template>
-  <div v-if="group" class="flex flex-col gap-3">
-    <h2 class="text-xl">予算</h2>
-    <p>{{ group?.budget }} 円</p>
+  <div v-if="group" class="flex flex-col">
+    <label class="text-xl">予算</label>
+    <p class="mt-3">{{ group?.budget }} 円</p>
   </div>
 </template>

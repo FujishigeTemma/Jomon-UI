@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import { ArrowLongRightIcon } from '@heroicons/vue/24/outline'
 import { computed } from 'vue'
 
 import { formatDate } from '/@/lib/date'
 
-import { ArrowLongRightIcon } from '@heroicons/vue/24/outline'
 import TagsGroup from '/@/components/shared/TagsGroup.vue'
 import type { Transaction } from '/@/features/transaction/model'
 
@@ -16,13 +16,13 @@ const formattedDate = computed(() => formatDate(props.transaction.createdAt))
 </script>
 
 <template>
-  <div class="flex flex-col gap-6">
-    <div class="flex flex-col gap-3">
-      <h2 class="text-xl">年月日</h2>
+  <div class="mb-4 space-y-2">
+    <div>
+      <p class="font-bold">年月日</p>
       <p>{{ formattedDate }}</p>
     </div>
-    <div class="flex flex-col gap-3">
-      <h2 class="text-xl">入出金</h2>
+    <div>
+      <p class="font-bold">入出金</p>
       <div>
         <p>{{ Math.abs(transaction.amount) }}円</p>
         <div
@@ -35,13 +35,15 @@ const formattedDate = computed(() => formatDate(props.transaction.createdAt))
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-3">
-      <h2 class="text-xl">取引グループ</h2>
+    <div>
+      <p class="font-bold">取引グループ</p>
       <p>{{ transaction.group ? transaction.group.name : 'なし' }}</p>
     </div>
-    <div class="flex flex-col gap-3">
-      <h2 class="text-xl">タグ</h2>
-      <TagsGroup :tags="transaction.tags" />
+    <div>
+      <p class="font-bold">タグ</p>
+      <div>
+        <TagsGroup :tags="transaction.tags" />
+      </div>
     </div>
   </div>
 </template>

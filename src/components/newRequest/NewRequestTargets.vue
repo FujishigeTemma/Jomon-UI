@@ -15,7 +15,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<(e: 'input', value: RequestTarget[]) => void>()
+const emit = defineEmits<{ (e: 'input', value: RequestTarget[]): void }>()
 
 const userStore = useUserStore()
 const { userOptions } = storeToRefs(userStore)
