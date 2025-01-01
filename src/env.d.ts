@@ -8,3 +8,5 @@ declare module '*.vue' {
 }
 
 declare const _APP_VERSION: string
+
+declare module 'vue-axe'

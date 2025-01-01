@@ -1,6 +1,6 @@
-import vue from '@vitejs/plugin-vue'
 import * as https from 'https'
 import * as path from 'path'
+import vue from '@vitejs/plugin-vue'
 import brotli from 'rollup-plugin-brotli'
 import { defineConfig } from 'vite'
 
@@ -23,5 +23,8 @@ export default defineConfig({
         agent: keepAliveAgent
       }
     }
-  }
+  },
+  optimizeDeps: {
+    include: ["axe-core"],
+  },
 })

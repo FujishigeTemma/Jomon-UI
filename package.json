@@ -40,11 +40,13 @@
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/eslint-config-typescript": "^14.1.4",
     "autoprefixer": "^10.4.20",
+    "axe-core": "^4.10.2",
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "eslint-plugin-vue": "^9.30.0",
+    "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "esno": "^4.8.0",
     "execa": "^9.5.1",
     "globals": "^15.12.0",
@@ -58,6 +60,7 @@
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.12.2",
     "vite": "^5.4.10",
+    "vue-axe": "^3.1.2",
     "vue-tsc": "^2.1.10"
   },
   "msw": {
