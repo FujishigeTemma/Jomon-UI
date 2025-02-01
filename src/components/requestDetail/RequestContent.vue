@@ -5,16 +5,17 @@ import { useUserStore } from '/@/stores/user'
 
 import { formatDateAndTime } from '/@/lib/date'
 
-import MarkdownIt from '/@/components//shared/MarkdownIt.vue'
-import UserIcon from '/@/components/shared/UserIcon.vue'
-import type { RequestDetail } from '/@/features/request/model'
 import { ref } from 'vue'
-import { editRequestUsecase } from '/@/features/request/usecase'
+import { useToast } from 'vue-toastification'
+import MarkdownIt from '/@/components//shared/MarkdownIt.vue'
 import EditButton from '/@/components/shared/EditButton.vue'
 import MarkdownTextarea from '/@/components/shared/MarkdownTextarea.vue'
 import SimpleButton from '/@/components/shared/SimpleButton.vue'
-import { useToast } from 'vue-toastification'
+import UserIcon from '/@/components/shared/UserIcon.vue'
 import { useRequest } from '/@/features/request/composables'
+import type { RequestDetail } from '/@/features/request/model'
+import { editRequestUsecase } from '/@/features/request/usecase'
+import RequestAttachment from './RequestAttachment.vue'
 
 const props = defineProps<{
   request: RequestDetail
@@ -69,10 +70,12 @@ const handleUpdateContent = async () => {
       </time>
     </div>
     <div class="ml-16 flex items-start gap-2">
-      <MarkdownIt
+      <div
         v-if="!isEditMode"
-        class="border border-surface-secondary px-4 py-3 rounded-lg flex-1"
-        :text="request.content" />
+        class="border border-surface-secondary px-4 py-3 rounded-lg flex-1 w-full">
+        <MarkdownIt :text="request.content" />
+        <RequestAttachment :files="request.files" />
+      </div>
       <MarkdownTextarea
         v-else
         v-model="editedContent"

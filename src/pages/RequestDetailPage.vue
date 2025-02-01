@@ -48,7 +48,7 @@ if (!isTagFetched.value) {
     <RequestHeader :request="request" />
     <div class="h-px bg-[#e5e7eb]" />
     <div class="flex justify-between gap-20">
-      <RequestLogs class="basis-2/3" :request="request" />
+      <RequestLogs class="basis-2/3 max-w-[75%]" :request="request" />
       <RequestSidebar class="basis-1/3" :request="request" />
     </div>
   </div>
