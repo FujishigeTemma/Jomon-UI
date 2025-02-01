@@ -8,7 +8,7 @@ defineProps<{
 <template>
   <img
     :alt="name"
-    class="rounded-1/2 h-full p-1"
+    class="rounded-full h-full p-1"
     :src="`https://q.trap.jp/api/v3/public/icon/${name}`"
     :title="name" />
 </template>

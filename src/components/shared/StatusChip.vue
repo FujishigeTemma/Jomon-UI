@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import {
-  HandThumbUpIcon,
+  CheckCircleIcon,
+  ChevronDownIcon,
   CloudArrowUpIcon,
   ExclamationTriangleIcon,
-  XCircleIcon,
-  CheckCircleIcon,
-  ChevronDownIcon
-} from '@heroicons/vue/24/solid'
-import { computed } from 'vue'
+  HandThumbUpIcon,
+  XCircleIcon
+} from '@heroicons/vue/24/solid';
+import { computed } from 'vue';
 
-import type { RequestStatus } from '/@/features/requestStatus/model'
+import type { RequestStatus } from '/@/features/requestStatus/model';
 
 interface Props {
   status: RequestStatus
@@ -59,7 +59,7 @@ const backgroundColor = computed(() => (status: RequestStatus) => {
 
 <template>
   <div
-    :class="`inline flex items-center rounded-3xl px-3 py-2 gap-2 text-white ${backgroundColor(
+    :class="`inline flex items-center rounded-3xl px-2 py-2 gap-2 text-white ${backgroundColor(
       status
     )}${hasMenu ? ' cursor-pointer' : ''}`"
     :title="statusToJpn(status)">

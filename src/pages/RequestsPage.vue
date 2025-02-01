@@ -10,7 +10,6 @@ import { useUserStore } from '/@/stores/user'
 
 import { toPage } from '/@/lib/parseQueryParams'
 
-import RequestFilters from '/@/components/requests/RequestFilters.vue'
 import RequestItem from '/@/components/requests/RequestItem.vue'
 import PaginationBar from '/@/components/shared/PaginationBar.vue'
 import SimpleButton from '/@/components/shared/SimpleButton.vue'
@@ -60,35 +59,35 @@ watch(
 </script>
 
 <template>
-  <div class="min-w-[640px] mx-auto flex w-2/3 flex-col px-12 pt-8">
-    <div class="relative flex w-full items-center justify-center pb-8">
-      <h1 class="text-center text-3xl">申請一覧</h1>
-      <div class="absolute right-0">
-        <RouterLink to="/requests/new">
-          <SimpleButton font-size="lg" padding="md">
-            申請の新規作成
-          </SimpleButton>
-        </RouterLink>
+  <div class="max-w-6xl mx-auto p-3 sm:p-8 flex flex-col gap-7">
+    <div class="flex flex-col">
+      <div class="relative flex w-full items-center justify-start gap-7">
+        <h1 class="text-center text-3xl">申請一覧</h1>
+        <div>
+          <RouterLink to="/requests/new">
+            <SimpleButton font-size="lg" padding="md">
+              申請を作成
+            </SimpleButton>
+          </RouterLink>
+        </div>
       </div>
     </div>
-  </div>
-  <RequestFilters />
-  <div class="min-h-[480px]">
-    <div class="mx-auto mt-4 w-3/4 rounded-xl shadow">
-      <ul>
-        <li
-          v-for="request in sliceRequestsAt(page, 7)"
-          :key="request.id"
-          class="hover:bg-hover-secondary first:hover:rounded-t-xl last:hover:rounded-b-xl">
-          <RequestItem :request="request" />
-        </li>
-      </ul>
+    <div class="min-h-120">
+      <div class="mx-auto rounded-xl shadow">
+        <ul>
+          <li
+            v-for="request in sliceRequestsAt(page, 7)"
+            :key="request.id"
+            class="hover:bg-hover-secondary">
+            <RequestItem :request="request" />
+          </li>
+        </ul>
+      </div>
     </div>
+    <PaginationBar
+      v-if="requests.length > 0"
+      :current-page="page"
+      path="/requests"
+      :total-pages="Math.ceil(requests.length / 7)" />
   </div>
-  <PaginationBar
-    v-if="requests.length > 0"
-    class="mt-4"
-    :current-page="page"
-    path="/requests"
-    :total-pages="Math.ceil(requests.length / 7)" />
 </template>
