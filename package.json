@@ -49,7 +49,7 @@
     "execa": "^9.5.2",
     "globals": "^15.14.0",
     "msw": "^2.7.0",
-    "postcss": "^8.4.47",
+    "postcss": "^8.5.1",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "rollup-plugin-brotli": "^3.1.0",
