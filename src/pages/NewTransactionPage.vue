@@ -41,7 +41,7 @@ if (!isTagFetched.value) {
 
 <template>
   <div v-if="!isAdmin">権限がありません。</div>
-  <div v-else class="min-w-[640px] mx-auto mb-5 flex w-2/3 flex-col px-12 pt-8">
+  <div v-else>
     <div class="pb-6">
       <h1 class="text-2xl">入出金記録の新規作成</h1>
     </div>

@@ -50,11 +50,9 @@ if (!isGroupFetched.value) {
 </script>
 
 <template>
-  <div
-    v-if="transaction !== undefined"
-    class="min-w-96 mx-auto h-full w-4/5 pt-4">
-    <div class="flex items-center pb-4">
-      <h1 class="text-3xl">入出金記録の詳細</h1>
+  <div v-if="transaction !== undefined" class="flex flex-col gap-6">
+    <div class="flex items-center">
+      <h1 class="text-2xl">入出金記録の詳細</h1>
       <SimpleButton
         v-if="isAdmin && transaction.request && !isEditMode"
         class="ml-2"

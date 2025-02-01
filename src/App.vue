@@ -25,20 +25,21 @@ watch(
 
 <template>
   <JomonHeader />
-  <main
-    class="text-text-primary bg-surface-primary h-screen overflow-y-scroll pt-12">
-    <router-view v-slot="{ Component }">
-      <template v-if="Component">
-        <suspense>
-          <template #default>
-            <component :is="Component" />
-          </template>
-          <template #fallback>
-            <div>loading...</div>
-          </template>
-        </suspense>
-      </template>
-    </router-view>
+  <main class="text-text-primary bg-surface-primary pt-12">
+    <div class="md:w-2/3 w-5/6 mx-auto mt-8 pb-32">
+      <router-view v-slot="{ Component }">
+        <template v-if="Component">
+          <suspense>
+            <template #default>
+              <component :is="Component" />
+            </template>
+            <template #fallback>
+              <div>loading...</div>
+            </template>
+          </suspense>
+        </template>
+      </router-view>
+    </div>
   </main>
 </template>
 

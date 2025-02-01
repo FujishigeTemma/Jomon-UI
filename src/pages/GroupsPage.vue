@@ -39,41 +39,39 @@ watch(
 </script>
 
 <template>
-  <div>
-    <div class="mx-auto flex md:w-2/3 w-5/6 my-8 flex-col">
-      <div class="relative flex flex-wrap gap-x-7 gap-y-2 w-full items-center">
-        <h1 class="text-2xl">グループ一覧</h1>
-        <div v-if="isAdmin">
-          <RouterLink to="/groups/new">
-            <SimpleButton font-size="lg" padding="md">
-              グループを作成
-            </SimpleButton>
-          </RouterLink>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-[2fr_3fr_2fr] divide-y my-7">
-        <div
-          class="grid grid-cols-subgrid col-span-3 bg-surface-tertiary gap-x-2 px-6 py-4 whitespace-nowrap">
-          <div>グループ名</div>
-          <div>詳細</div>
-          <div>予算</div>
-        </div>
-        <RouterLink
-          v-for="group in sliceGroupsAt(page, 10)"
-          :key="group.id"
-          class="grid grid-cols-subgrid col-span-3 hover:bg-hover-secondary gap-x-2 px-6 py-4"
-          :to="`/groups/${group.id}`">
-          <div>{{ group.name }}</div>
-          <div class="truncate">{{ group.description }}</div>
-          <div>{{ group.budget }}</div>
-        </RouterLink>
-      </div>
-      <PaginationBar
-        v-if="groups.length > 0"
-        :current-page="page"
-        path="/groups"
-        :total-pages="Math.ceil(groups.length / 10)" />
+  <div class="flex flex-col gap-7">
+    <div class="relative flex flex-wrap gap-x-7 gap-y-2 w-full items-center">
+    <h1 class="text-2xl">グループ一覧</h1>
+    <div v-if="isAdmin">
+      <RouterLink to="/groups/new">
+        <SimpleButton font-size="lg" padding="md">
+          グループを作成
+        </SimpleButton>
+      </RouterLink>
     </div>
+  </div>
+
+  <div class="grid grid-cols-[2fr_3fr_2fr] divide-y my-7">
+    <div
+      class="grid grid-cols-subgrid col-span-3 bg-surface-tertiary gap-x-2 px-6 py-4 whitespace-nowrap">
+      <div>グループ名</div>
+      <div>詳細</div>
+      <div>予算</div>
+    </div>
+    <RouterLink
+      v-for="group in sliceGroupsAt(page, 10)"
+      :key="group.id"
+      class="grid grid-cols-subgrid col-span-3 hover:bg-hover-secondary gap-x-2 px-6 py-4"
+      :to="`/groups/${group.id}`">
+      <div>{{ group.name }}</div>
+      <div class="truncate">{{ group.description }}</div>
+      <div>{{ group.budget }}</div>
+    </RouterLink>
+  </div>
+  <PaginationBar
+    v-if="groups.length > 0"
+    :current-page="page"
+    path="/groups"
+    :total-pages="Math.ceil(groups.length / 10)" />
   </div>
 </template>

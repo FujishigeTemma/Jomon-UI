@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import SimpleButton from '/@/components/shared/SimpleButton.vue'
-import InputText from '/@/components/shared/InputText.vue'
 import { PlusIcon, TrashIcon } from '@heroicons/vue/24/outline'
+import InputText from '/@/components/shared/InputText.vue'
+import SimpleButton from '/@/components/shared/SimpleButton.vue'
 
 interface Props {
   targets: string[]
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<{ (e: 'input', value: string[]): void }>()
+const emit = defineEmits<(e: 'input', value: string[]) => void>()
 
 function handleEditTarget(index: number, value: string) {
   emit(

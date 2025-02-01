@@ -47,33 +47,29 @@ watch(
 </script>
 
 <template>
-  <div>
-    <div class="mx-auto my-8 flex w-2/3 flex-col">
-      <div class="relative flex w-full items-center mb-7">
-        <h1 class="text-center text-2xl">入出金記録一覧</h1>
-        <div v-if="isAdmin" class="ml-7">
-          <RouterLink to="/transactions/new">
-            <SimpleButton font-size="lg" padding="md">
-              入出金記録を作成
-            </SimpleButton>
-          </RouterLink>
-        </div>
-      </div>
-      <div class="min-h-128">
-        <!-- TODO: ソートボタン, 各カラムの検索フィルター -->
-        <TransactionTable
-          v-if="transactions"
-          :page="page"
-          :transactions="transactions" />
-        <div v-else>loading...</div>
-
-        <PaginationBar
-          v-if="transactions && transactions.length > 0"
-          class="my-4"
-          :current-page="page"
-          path="/transactions"
-          :total-pages="Math.ceil(transactions.length / 10)" />
-      </div>
+  <div class="relative flex w-full items-center mb-7">
+    <h1 class="text-center text-2xl">入出金記録一覧</h1>
+    <div v-if="isAdmin" class="ml-7">
+      <RouterLink to="/transactions/new">
+        <SimpleButton font-size="lg" padding="md">
+          入出金記録を作成
+        </SimpleButton>
+      </RouterLink>
     </div>
+  </div>
+  <div class="min-h-128">
+    <!-- TODO: ソートボタン, 各カラムの検索フィルター -->
+    <TransactionTable
+      v-if="transactions"
+      :page="page"
+      :transactions="transactions" />
+    <div v-else>loading...</div>
+
+    <PaginationBar
+      v-if="transactions && transactions.length > 0"
+      class="mt-7"
+      :current-page="page"
+      path="/transactions"
+      :total-pages="Math.ceil(transactions.length / 10)" />
   </div>
 </template>

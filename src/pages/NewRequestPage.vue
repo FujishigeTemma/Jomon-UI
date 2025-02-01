@@ -40,54 +40,52 @@ if (!isUserFetched.value) {
 </script>
 
 <template>
-  <div class="min-w-[640px] w-2/3 mx-auto mt-8 mb-32 flex flex-col">
-    <div class="pb-8">
-      <h1 class="text-2xl">申請の新規作成</h1>
-    </div>
-    <form class="flex flex-col gap-6">
-      <div class="flex flex-col gap-2">
-        <label class="text-sm font-medium">申請者</label>
-        <span>{{ me?.name }}</span>
-      </div>
-      <div class="flex flex-col gap-2">
-        <label class="text-sm font-medium" for="title">タイトル</label>
-        <InputText
-          id="title"
-          v-model="request.title"
-          auto-focus
-          placeholder="タイトルを入力" />
-      </div>
-      <div class="flex flex-col gap-2">
-        <label class="text-sm font-medium" for="details">詳細</label>
-        <MarkdownTextarea
-          id="details"
-          v-model="request.content"
-          placeholder=""
-          :templates="requestTemplates" />
-      </div>
-      <NewRequestTargets
-        :targets="request.targets"
-        @input="request.targets = $event" />
-      <div class="flex flex-col gap-2">
-        <label class="text-sm font-medium" for="group">グループ</label>
-        <InputSelectSingle
-          id="group"
-          v-model="request.group"
-          class="w-full"
-          :options="groupOptions"
-          placeholder="グループを選択" />
-      </div>
-      <NewRequestTag :tags="request.tags" @input="request.tags = $event" />
-      <NewRequestFileForm :files="files" @input="files = $event" />
-      <div class="text-right">
-        <SimpleButton
-          :disabled="isSending"
-          font-size="base"
-          padding="md"
-          @click.stop="postRequest">
-          申請を作成
-        </SimpleButton>
-      </div>
-    </form>
+  <div class="pb-8">
+    <h1 class="text-2xl">申請の新規作成</h1>
   </div>
+  <form class="flex flex-col gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-sm font-medium">申請者</h2>
+      <span>{{ me?.name }}</span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="text-sm font-medium" for="title">タイトル</label>
+      <InputText
+        id="title"
+        v-model="request.title"
+        auto-focus
+        placeholder="タイトルを入力" />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="text-sm font-medium" for="details">詳細</label>
+      <MarkdownTextarea
+        id="details"
+        v-model="request.content"
+        placeholder=""
+        :templates="requestTemplates" />
+    </div>
+    <NewRequestTargets
+      :targets="request.targets"
+      @input="request.targets = $event" />
+    <div class="flex flex-col gap-2">
+      <label class="text-sm font-medium" for="group">グループ</label>
+      <InputSelectSingle
+        id="group"
+        v-model="request.group"
+        class="w-full"
+        :options="groupOptions"
+        placeholder="グループを選択" />
+    </div>
+    <NewRequestTag :tags="request.tags" @input="request.tags = $event" />
+    <NewRequestFileForm :files="files" @input="files = $event" />
+    <div class="text-right">
+      <SimpleButton
+        :disabled="isSending"
+        font-size="base"
+        padding="md"
+        @click.stop="postRequest">
+        申請を作成
+      </SimpleButton>
+    </div>
+  </form>
 </template>

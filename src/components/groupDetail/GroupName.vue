@@ -5,8 +5,8 @@ import { useGroupDetailStore } from '/@/stores/groupDetail'
 import { useUserStore } from '/@/stores/user'
 
 import type { EditMode } from '/@/components/groupDetail/composables/useGroupInformation'
-import InputText from '/@/components/shared/InputText.vue'
 import EditButton from '/@/components/shared/EditButton.vue'
+import InputText from '/@/components/shared/InputText.vue'
 import SimpleButton from '/@/components/shared/SimpleButton.vue'
 
 interface Props {

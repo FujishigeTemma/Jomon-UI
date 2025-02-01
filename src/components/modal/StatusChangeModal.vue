@@ -5,17 +5,15 @@ import { useToast } from 'vue-toastification'
 import MarkdownTextarea from '/@/components/shared/MarkdownTextarea.vue'
 import SimpleButton from '/@/components/shared/SimpleButton.vue'
 import StatusChip from '/@/components/shared/StatusChip.vue'
+import type { RequestDetail } from '/@/features/request/model'
 import { changeStatusUsecase } from '/@/features/request/usecase'
 import type { RequestStatus } from '/@/features/requestStatus/model'
-import type { RequestDetail } from '/@/features/request/model'
 
 const props = defineProps<{
   request: RequestDetail
   nextStatus: RequestStatus
 }>()
-const emit = defineEmits<{
-  (e: 'closeModal'): void
-}>()
+const emit = defineEmits<(e: 'closeModal') => void>()
 
 const toast = useToast()
 

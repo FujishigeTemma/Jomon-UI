@@ -8,12 +8,12 @@ import { useUserStore } from '/@/stores/user'
 
 import { toId } from '/@/lib/parseQueryParams'
 
+import RequestHeader from '/@/components/requestDetail/RequestHeader.vue'
 import RequestLogs from '/@/components/requestDetail/RequestLogs.vue'
 import RequestSidebar from '/@/components/requestDetail/RequestSidebar.vue'
 import { useFetchGroupsUsecase } from '/@/features/group/usecase'
 import { useFetchTagsUsecase } from '/@/features/tag/usecase'
 import { useFetchUsersUsecase } from '/@/features/user/usecase'
-import RequestHeader from '/@/components/requestDetail/RequestHeader.vue'
 import { useRequestDetailStore } from '/@/stores/requestDetail'
 
 const route = useRoute()
@@ -42,9 +42,7 @@ if (!isTagFetched.value) {
 </script>
 
 <template>
-  <div
-    v-if="request !== undefined"
-    class="mx-auto w-4/5 pt-5 pb-20 flex flex-col gap-5">
+  <div v-if="request !== undefined" class="flex flex-col gap-5">
     <RequestHeader :request="request" />
     <div class="h-px bg-[#e5e7eb]" />
     <div class="flex justify-between gap-20">

@@ -60,21 +60,19 @@ watch(
 </script>
 
 <template>
-  <div class="min-w-[640px] mx-auto flex w-2/3 flex-col px-12 pt-8">
-    <div class="relative flex w-full items-center justify-center pb-8">
-      <h1 class="text-center text-3xl">申請一覧</h1>
-      <div class="absolute right-0">
-        <RouterLink to="/requests/new">
-          <SimpleButton font-size="lg" padding="md">
-            申請の新規作成
-          </SimpleButton>
-        </RouterLink>
-      </div>
+  <div class="relative flex w-full items-center justify-center pb-8">
+    <h1 class="text-center text-3xl">申請一覧</h1>
+    <div class="absolute right-0">
+      <RouterLink to="/requests/new">
+        <SimpleButton font-size="lg" padding="md">
+          申請の新規作成
+        </SimpleButton>
+      </RouterLink>
     </div>
   </div>
   <RequestFilters />
   <div class="min-h-[480px]">
-    <div class="mx-auto mt-4 w-3/4 rounded-xl shadow">
+    <div class="mt-4 rounded-xl shadow">
       <ul>
         <li
           v-for="request in sliceRequestsAt(page, 7)"
@@ -87,7 +85,7 @@ watch(
   </div>
   <PaginationBar
     v-if="requests.length > 0"
-    class="mt-4"
+    class="mt-7"
     :current-page="page"
     path="/requests"
     :total-pages="Math.ceil(requests.length / 7)" />
