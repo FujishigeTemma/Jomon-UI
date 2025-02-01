@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { ChevronDownIcon } from '@heroicons/vue/24/solid';
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
-
+import { ChevronDownIcon } from '@heroicons/vue/24/solid'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ValueValue = Record<string, any> | string | null
@@ -163,7 +162,7 @@ const pushTag = () => {
   ])
   searchQuery.value = ''
 }
-const handleClick = () => {
+const openDropdown = () => {
   isDropdownOpen.value = true
   if (inputRef.value === null) return
   inputRef.value.focus()
@@ -171,63 +170,61 @@ const handleClick = () => {
 
 /* キーボードによる操作の処理 */
 const handleKeydown = (e: KeyboardEvent, option: Value) => {
-  if (e.key === 'Tab') {
-    isDropdownOpen.value = false
-    emit('close')
-  }
-  if (e.key === 'ArrowDown') {
-    e.preventDefault()
-    if (searchQuery.value !== '') return
-    if (listItemRefs.value === null) return
-    const length =
-      searchQuery.value !== ''
-        ? searchedOptions.value.length
-        : (props.options?.length ?? 0)
-    focusingListItemIndex.value = (focusingListItemIndex.value + 1) % length
-    const buttonEl = listItemRefs.value[focusingListItemIndex.value]
-      .firstChild as HTMLButtonElement
-    buttonEl.focus({ preventScroll: false })
-    if (listRef.value === null) return
-    if (focusingListItemIndex.value > 3) {
-      listRef.value.scrollBy({
-        top: 12,
-        left: 0,
-        behavior: 'smooth'
-      })
-    }
-  }
-  if (e.key === 'ArrowUp') {
-    e.preventDefault()
-    if (searchQuery.value !== '') return
-    if (listItemRefs.value === null) return
-    const length =
-      searchQuery.value !== ''
-        ? searchedOptions.value.length
-        : (props.options?.length ?? 0)
-    focusingListItemIndex.value =
-      (focusingListItemIndex.value - 1 + length) % length
-    const buttonEl = listItemRefs.value[focusingListItemIndex.value]
-      .firstChild as HTMLButtonElement
-    buttonEl.focus({ preventScroll: false })
-    if (listRef.value === null) return
-
-    if (focusingListItemIndex.value < length - 3) {
-      listRef.value.scrollBy({
-        top: -12,
-        left: 0,
-        behavior: 'smooth'
-      })
-    }
-  }
-  if (e.key === 'Enter') {
-    e.preventDefault()
-    if (focusingListItemIndex.value === -1) {
-      pushTag()
-    } else {
-      selectValue(option)
-    }
+  switch (e.key) {
+    case 'Tab':
+      isDropdownOpen.value = false
+      emit('close')
+      break
+    case 'Enter':
+      e.preventDefault()
+      if (focusingListItemIndex.value === -1) {
+        pushTag()
+      } else {
+        selectValue(option)
+      }
+      break
+    case 'ArrowDown':
+      e.preventDefault()
+      if (searchQuery.value !== '') return
+      navigateList('down')
+      if (listRef.value === null) return
+      if (focusingListItemIndex.value > 3) {
+        listRef.value.scrollBy({
+          top: 12,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }
+      break
+    case 'ArrowUp':
+      e.preventDefault()
+      if (searchQuery.value !== '') return
+      navigateList('up')
+      if (listRef.value === null) return
+      if (focusingListItemIndex.value < length - 3) {
+        listRef.value.scrollBy({
+          top: -12,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }
+      break
   }
 }
+
+const navigateList = (direction: 'up' | 'down') => {
+  if (listItemRefs.value === null) return
+
+  const length = searchedOptions.value.length
+  const increment = direction === 'down' ? 1 : -1
+  focusingListItemIndex.value =
+    (focusingListItemIndex.value + increment + length) % length
+
+  const buttonEl = listItemRefs.value[focusingListItemIndex.value]
+    .firstChild as HTMLButtonElement
+  buttonEl?.focus({ preventScroll: false })
+}
+
 const handleInputKeydown = (e: KeyboardEvent) => {
   if (e.key === 'Enter') {
     e.preventDefault()
@@ -237,13 +234,6 @@ const handleInputKeydown = (e: KeyboardEvent) => {
     handleKeydown(e, {} as Value)
   }
 }
-
-const calcWidth = computed(() => {
-  if (/w-/.test(props.class)) {
-    return props.class
-  }
-  return `${props.class} w-72`
-})
 
 /* ドロップダウンの位置を計算する処理 */
 const updateHeight = () => {
@@ -270,11 +260,15 @@ onUnmounted(() => {
 <template>
   <div
     ref="inputSelectRef"
-    :class="`relative ${disabled && 'cursor-not-allowed'} ${calcWidth}`">
+    :class="`relative ${disabled && 'cursor-not-allowed'}`">
     <div
-      class="flex cursor-text items-center rounded border border-surface-secondary py-1 pl-1"
+      role="button"
+      tabindex="0"
+      class="flex cursor-text items-center w-full py-1 pl-1 rounded border border-surface-secondary"
       :class="`${disabled && 'pointer-events-none'}`"
-      @click.prevent="handleClick">
+      @click.prevent="openDropdown"
+      @keydown.enter.prevent="openDropdown"
+      @keydown.space.prevent="openDropdown">
       <div class="flex items-center overflow-x-auto">
         <div
           v-for="selectedValue in selectedValues"

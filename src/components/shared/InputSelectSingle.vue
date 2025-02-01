@@ -68,7 +68,7 @@ const selectValue = (selectedOption: Value) => {
       return
     }
   }
-  //add
+  // add
   emit('update:modelValue', selectedOption.value)
   if (inputRef.value === null) return
   isDropdownOpen.value = false
@@ -96,7 +96,7 @@ const searchedOptions = computed(() => {
     return regexp.test(option.key)
   })
 })
-const handleClick = () => {
+const openDropdown = () => {
   isDropdownOpen.value = true
   if (inputRef.value === null) return
   inputRef.value.focus()
@@ -145,12 +145,6 @@ const handleKeydown = (e: KeyboardEvent) => {
     }
   }
 }
-const calcWidth = computed(() => {
-  if (/w-/.test(props.class)) {
-    return props.class
-  }
-  return `${props.class} w-72`
-})
 
 const updateHeight = () => {
   if (listRef.value === null) return
@@ -176,11 +170,15 @@ onUnmounted(() => {
 <template>
   <div
     ref="inputSelectRef"
-    :class="`relative ${disabled && 'cursor-not-allowed'}  ${calcWidth}`">
+    :class="`relative ${disabled && 'cursor-not-allowed'}`">
     <div
+      role="button"
+      tabindex="0"
       class="flex w-full cursor-text items-center gap-1 rounded border border-surface-secondary py-1 pr-1"
       :class="`${disabled && 'pointer-events-none'}`"
-      @click="handleClick">
+      @click="openDropdown"
+      @keydown.enter="openDropdown"
+      @keydown.space="openDropdown">
       <div class="relative left-2 flex w-full">
         <span
           v-if="selectedValue"
